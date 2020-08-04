@@ -16,6 +16,16 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use("Route");
 
+// Đường dẫn: /*
+Route.group(() => {
+  Route.on("/").render("landing.pages.home").as("home");
+  Route.on("/nhom.html").render("landing.pages.home").as("team");
+  Route.on("/lien-he.html").render("landing.pages.home").as("contact");
+  Route.on("/bang-gia.html").render("landing.pages.home").as("price");
+})
+  .as("landing")
+  .namespace("Landing");
+
 // Đường dẫn: /auth/*
 Route.group(() => {
   Route.get("/login", "LoginController.showLogin").as("login");

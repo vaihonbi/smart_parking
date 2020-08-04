@@ -19,8 +19,13 @@ const providers = [
   "@adonisjs/shield/providers/ShieldProvider",
   "@adonisjs/session/providers/SessionProvider",
   "@adonisjs/auth/providers/AuthProvider",
-  "adonis-acl/providers/AclProvider",
   "@adonisjs/websocket/providers/WsProvider",
+  "@adonisjs/mail/providers/MailProvider",
+  "@adonisjs/drive/providers/DriveProvider",
+  "@adonisjs/ally/providers/AllyProvider",
+  "adonis-acl/providers/AclProvider",
+  "adonis-smser/providers/SmserProvider",
+  "adonis-drive-google/providers/DriveProvider",
 ];
 
 /*
