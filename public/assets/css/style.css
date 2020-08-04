@@ -67,3 +67,9 @@ label {
     color: #000000 !important;
   }
 }
+
+.user-panel .info {
+  position: relative;
+  padding-left: 8px;
+  left: 0;
+}

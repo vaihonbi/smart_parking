@@ -38,6 +38,7 @@ Route.group(() => {
 // Đường dẫn: /parking/*
 Route.group(() => {
   Route.get("/", "HomeController.index").as("home");
+  Route.delete("/", "HomeController.logout").as("logout");
 })
   .prefix("/parking")
   .as("parking")

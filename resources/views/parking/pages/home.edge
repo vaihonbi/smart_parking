@@ -46,7 +46,7 @@
           </div>
         </div>
         <div class="box-body">
-          123
+          <div id="sessionChart"></div>
         </div>
       </div>
     </div>
@@ -58,10 +58,66 @@
           </div>
         </div>
         <div class="box-body">
-          123
+          <div id="priceChart"></div>
         </div>
       </div>
     </div>
   </div>
 </div>
+@endsection
+
+@section('scripts')
+{{ script('vendor/apexcharts/dist/apexcharts.min.js') }}
+
+<script>
+new ApexCharts(document.querySelector("#sessionChart"), {
+  series: [
+    {
+      name: "Gửi xe",
+      type: "column",
+      data: [],
+    },
+    {
+      name: "Trả xe",
+      type: "line",
+      data: [],
+    },
+  ],
+  chart: {
+    height: 350,
+    type: "line",
+    fontFamily: "Google Sans, Arial, sans-serif",
+  },
+  stroke: {
+    width: [0, 3],
+  },
+  dataLabels: {
+    enabled: true,
+    enabledOnSeries: [1],
+  },
+  labels: [],
+}).render();
+
+new ApexCharts(document.querySelector("#priceChart"), {
+  series: [
+    {
+      name: "Phí gửi",
+      type: "area",
+      data: [],
+    },
+  ],
+  chart: {
+    height: 350,
+    type: "area",
+    fontFamily: "Google Sans, Arial, sans-serif",
+  },
+  stroke: {
+    width: [3],
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  labels: [],
+}).render();
+</script>
 @endsection
