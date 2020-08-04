@@ -7,6 +7,7 @@ class SessionSchema extends Schema {
   up() {
     this.create("sessions", (table) => {
       table.increments();
+      table.text("cost");
       table.text("image_url");
       table.datetime("holded_at");
       table.datetime("returned_at");
@@ -25,6 +26,7 @@ class SessionSchema extends Schema {
         .references("id")
         .on("cards")
         .onDelete("cascade");
+      table.boolean("is_longterm").defaultTo(false);
       table.timestamps();
     });
   }

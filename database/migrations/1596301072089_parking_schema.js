@@ -37,7 +37,6 @@ class ParkingSchema extends Schema {
         .references("id")
         .on("parking_types")
         .onDelete("cascade");
-      table.integer("cost").defaultTo(0);
     });
   }
 
