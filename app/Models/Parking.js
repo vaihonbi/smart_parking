@@ -7,6 +7,10 @@ class Parking extends Model {
   types() {
     return this.belongsToMany("App/Models/ParkingType");
   }
+
+  cameras() {
+    return this.hasMany("App/Models/Camera");
+  }
 }
 
 module.exports = Parking;

@@ -8,6 +8,7 @@ class CameraSchema extends Schema {
     this.create("cameras", (table) => {
       table.increments();
       table.string("name");
+      table.text("thumb_url");
       table.text("stream_url");
       table
         .integer("parking_id")

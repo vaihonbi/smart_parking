@@ -84,8 +84,8 @@
               <span>Tổng quan</span>
             </a>
           </li>
-          <li>
-            <a href="#">
+          <li class="{{ request.url() == '/parking/cameras' ? 'active' : '' }}">
+            <a href="{{ route('parking.cameras') }}">
               <i class="fa fa-video-camera"></i>
               <span>Theo dõi</span>
             </a>
