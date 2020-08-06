@@ -7,7 +7,7 @@ class CardSchema extends Schema {
   up() {
     this.create("cards", (table) => {
       table.increments();
-      table.text("serial_number").unique();
+      table.text("serial_number");
       table
         .integer("parking_id")
         .unsigned()
