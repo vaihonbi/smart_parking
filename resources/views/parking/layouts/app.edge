@@ -48,8 +48,12 @@
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="#">Thông tin cá nhân</a>
+                  <a href="{{ route('parking.profile') }}">Thông tin cá nhân</a>
                 </li>
+                <li>
+                  <a href="#">Đổi mật khẩu</a>
+                </li>
+                <li class="divider"></li>
                 <li>
                   <form id="logout" action="{{ route('parking.logout') }}?_method=DELETE" method="POST">
                     {{ csrfField() }}
@@ -74,7 +78,7 @@
       <div class="sidebar">
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">CHUNG</li>
-          <li>
+          <li class="{{ request.url() == '/parking' ? 'active' : '' }}">
             <a href="{{ route('parking.home') }}">
               <i class="fa fa-area-chart"></i>
               <span>Tổng quan</span>

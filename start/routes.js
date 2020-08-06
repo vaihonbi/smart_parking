@@ -49,6 +49,8 @@ Route.group(() => {
 Route.group(() => {
   Route.get("/", "HomeController.index").as("home");
   Route.delete("/", "HomeController.logout").as("logout");
+
+  Route.get("/profile", "ProfileController.edit").as("profile");
 })
   .prefix("/parking")
   .as("parking")

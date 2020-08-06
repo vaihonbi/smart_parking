@@ -24,6 +24,7 @@
     "adonis-acl": "^1.1.1",
     "adonis-drive-google": "^0.0.2",
     "adonis-smser": "^0.1.0",
+    "knex": "^0.21.2",
     "mysql": "^2.18.1"
   }
 }
