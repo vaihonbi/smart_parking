@@ -2,26 +2,23 @@
 
 @section('content')
 <div class="content">
-  <div class="box box-info">
-    <div class="box-header with-border">
-      <div class="box-title">
-        Theo dõi
-      </div>
-    </div>
-    <div class="box-body">
-      <div class="row">
-        @each(item in cameras)
-        <div class="col-md-3">
-          <div class="embed-responsive embed-responsive-16by9">
-            <div class="embed-responsive-item bg-black"></div>
-          </div>
-          <div class="h5">
-            {{ item.name }}
-          </div>
+  <div class="row">
+    @each(item in cameras)
+    <div class="col-md-4">
+      <div class="box box-solid">
+        <div class="box-body">
+          <a href="#">
+            <div class="embed-responsive embed-responsive-16by9">
+              <div class="embed-responsive-item bg-black"></div>
+            </div>
+            <div class="h5" style="margin-bottom: 0;">
+              {{ item.name }}
+            </div>
+          </a>
         </div>
-        @endeach
       </div>
     </div>
+    @endeach
   </div>
 </div>
 @endsection

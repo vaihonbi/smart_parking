@@ -11,6 +11,7 @@ class UserSchema extends Schema {
       table.string("phone_number").unique();
       table.string("email").unique();
       table.text("password");
+      table.datetime("last_online_at").defaultTo(this.fn.now());
       table.timestamps();
     });
   }

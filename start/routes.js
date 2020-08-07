@@ -43,7 +43,7 @@ Route.group(() => {
   .prefix("/admin")
   .as("admin")
   .namespace("Admin")
-  .middleware(["auth", "is:admin"]);
+  .middleware(["auth", "is:admin", "online"]);
 
 // Đường dẫn: /parking/*
 Route.group(() => {
@@ -57,4 +57,4 @@ Route.group(() => {
   .prefix("/parking")
   .as("parking")
   .namespace("Parking")
-  .middleware(["auth", "is:owner", "parking"]);
+  .middleware(["auth", "is:owner", "parking", "online"]);

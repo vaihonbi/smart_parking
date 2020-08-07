@@ -44,6 +44,7 @@ const namedMiddleware = {
   is: "Adonis/Acl/Is",
   can: "Adonis/Acl/Can",
   parking: "App/Middleware/Parking",
+  online: "App/Middleware/UserOnline",
 };
 
 /*

@@ -1,5 +1,7 @@
 "use strict";
 
+const path = use("path");
+
 /*
 |--------------------------------------------------------------------------
 | Providers
@@ -26,6 +28,7 @@ const providers = [
   "adonis-acl/providers/AclProvider",
   "adonis-smser/providers/SmserProvider",
   "adonis-drive-google/providers/DriveProvider",
+  path.join(__dirname, "..", "providers", "AppProvider"),
 ];
 
 /*

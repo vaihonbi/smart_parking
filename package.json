@@ -25,6 +25,8 @@
     "adonis-drive-google": "^0.0.2",
     "adonis-smser": "^0.1.0",
     "knex": "^0.21.2",
+    "lodash": "^4.17.19",
+    "moment": "^2.27.0",
     "mysql": "^2.18.1"
   }
 }
