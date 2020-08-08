@@ -1,7 +1,14 @@
 @layout('parking.layouts.app')
 
 @section('content')
+<div class="content-header">
+  <h1>Theo Dõi</h1>
+</div>
+
 <div class="content">
+  @if(cameras.length == 0)
+  <div class="alert alert-warning">Bãi xe không có camera nào.</div>
+  @endif
   <div class="row">
     @each(item in cameras)
     <div class="col-md-4">

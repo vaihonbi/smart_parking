@@ -8,6 +8,10 @@ class ProfileController {
       user: user.toJSON(),
     });
   }
+
+  async update({ request, response, session, auth }) {
+    //
+  }
 }
 
 module.exports = ProfileController;

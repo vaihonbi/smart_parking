@@ -51,8 +51,26 @@ Route.group(() => {
   Route.delete("/", "HomeController.logout").as("logout");
 
   Route.get("/profile", "ProfileController.edit").as("profile");
+  Route.put("/profile", "ProfileController.update").as("profile.update");
 
   Route.get("/cameras", "CameraController.index").as("cameras");
+  Route.get("/cards", "CardController.index").as("cards");
+  Route.get("/cards/_lost", "CardController.lost").as("cards.lost");
+
+  Route.get("/sessions", "SessionController.index").as("sessions");
+  Route.get("/sessions/_holding", "SessionController.holding").as(
+    "sessions.holding"
+  );
+  Route.get("/sessions/_lost", "SessionController.lost").as("sessions.lost");
+
+  Route.resource("users", "UserController");
+
+  Route.get("/transactions", "TransactionController.index").as("transactions");
+  Route.get("/transactions/:id", "TransactionController.show").as(
+    "transactions.show"
+  );
+
+  Route.get("/settings", "SettingController.index").as("settings");
 })
   .prefix("/parking")
   .as("parking")

@@ -21,8 +21,11 @@ $ npm install -g @adonisjs/cli
 // cài đặt thư viện
 $ npm install
 
-// khởi tạo database và dữ liệu mẫu
-$ adonis migration:refresh && adonis seed
+// khởi tạo database
+$ adonis migration:refresh
+
+// dữ liệu mẫu
+$ adonis seed
 
 // khởi động ứng dụng
 $ adonis serve --dev

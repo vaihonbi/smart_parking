@@ -1,5 +1,6 @@
 "use strict";
 
+/** @type {import('path')} */
 const path = use("path");
 
 /*

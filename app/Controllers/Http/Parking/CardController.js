@@ -1,5 +1,13 @@
 "use strict";
 
-class CardController {}
+class CardController {
+  async index() {
+    return [];
+  }
+
+  async lost() {
+    return [];
+  }
+}
 
 module.exports = CardController;
