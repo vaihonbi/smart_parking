@@ -8,10 +8,6 @@ class SessionController {
   async holding() {
     return [];
   }
-
-  async lost() {
-    return [];
-  }
 }
 
 module.exports = SessionController;

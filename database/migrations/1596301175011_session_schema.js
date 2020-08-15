@@ -11,9 +11,7 @@ class SessionSchema extends Schema {
       table.text("image_url");
       table.datetime("holded_at");
       table.datetime("returned_at");
-      table
-        .enum("status", ["holding", "returned", "lost"])
-        .defaultTo("holding");
+      table.enum("status", ["holding", "returned"]).defaultTo("holding");
       table
         .integer("parking_type_id")
         .unsigned()

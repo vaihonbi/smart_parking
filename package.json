@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "node server.js",
-    "test": "node ace test"
+    "dev": "adonis serve --dev"
   },
   "autoload": {
     "App": "./app"
@@ -28,5 +28,8 @@
     "lodash": "^4.17.19",
     "moment": "^2.27.0",
     "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "@adonisjs/cli": "^4.0.12"
   }
 }
