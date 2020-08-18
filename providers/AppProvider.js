@@ -11,16 +11,8 @@ class AppProvider extends ServiceProvider {
    * @return {void}
    */
   register() {
-    this.app.singleton("Moment", () => {
-      const Moment = this.app.use("moment");
-      Moment.locale("vi");
-
-      return Moment;
-    });
-
-    this.app.singleton("Lodash", () => {
-      return this.app.use("lodash");
-    });
+    this.app.singleton("Moment", () => this.app.use("moment"));
+    this.app.singleton("Lodash", () => this.app.use("lodash"));
   }
 
   /**
@@ -32,7 +24,8 @@ class AppProvider extends ServiceProvider {
    * @return {void}
    */
   boot() {
-    //
+    const Moment = use("Moment");
+    Moment.locale("vi");
   }
 }
 

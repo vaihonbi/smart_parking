@@ -19,9 +19,9 @@ const Route = use("Route");
 // Đường dẫn: /*
 Route.group(() => {
   Route.on("/").render("landing.pages.home").as("home");
-  Route.on("/nhom.html").render("landing.pages.home").as("team");
-  Route.on("/lien-he.html").render("landing.pages.home").as("contact");
-  Route.on("/bang-gia.html").render("landing.pages.home").as("price");
+  Route.on("/nhom.html").render("landing.pages.team").as("team");
+  Route.on("/lien-he.html").render("landing.pages.contact").as("contact");
+  Route.on("/bang-gia.html").render("landing.pages.price").as("price");
 })
   .as("landing")
   .namespace("Landing");
