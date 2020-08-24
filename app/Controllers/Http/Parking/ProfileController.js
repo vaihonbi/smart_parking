@@ -10,7 +10,13 @@ class ProfileController {
   }
 
   async update({ request, response, session, auth }) {
-    //
+    const payload = request.only(["name", "email"]);
+    const user = auth.user;
+
+    user.merge(payload);
+    await user.save();
+
+    return response.route("parking.profile");
   }
 }
 
