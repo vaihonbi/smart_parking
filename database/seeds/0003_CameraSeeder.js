@@ -19,11 +19,13 @@ class CameraSeeder {
       {
         id: 1,
         name: "Camera 1",
+        thumb_url: "https://via.placeholder.com/400x225",
         parking_id: 1,
       },
       {
         id: 2,
         name: "Camera 2",
+        thumb_url: "https://via.placeholder.com/400x225",
         parking_id: 1,
       },
     ]);
