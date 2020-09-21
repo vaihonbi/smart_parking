@@ -36,6 +36,22 @@ Route.group(() => {
   .namespace("Auth")
   .middleware("guest");
 
+// Đường dẫn: /api/*
+Route.group(() => {
+  Route.post("/login", "LoginController.login");
+})
+  .prefix("/api")
+  .namespace("Api")
+  .middleware("guest");
+
+// Đường dẫn: /admin/*
+Route.group(() => {
+  Route.get("/profile", "ProfileController.me");
+})
+  .prefix("/api")
+  .namespace("Api")
+  .middleware(["auth:jwt"]);
+
 // Đường dẫn: /admin/*
 Route.group(() => {
   Route.get("/", "HomeController.index").as("home");
@@ -66,7 +82,7 @@ Route.group(() => {
   Route.resource("users", "UserController").validator(
     new Map([
       [["users.store"], ["StoreUser"]],
-      [["users.update"], ["StoreUser"]],
+      [["users.update"], ["UpdateUser"]],
     ])
   );
 

@@ -9,7 +9,7 @@
         <div class="box-body">
           <div class="form-group {{ hasErrorFor('name') ? 'has-error' : '' }}">
             <label>Họ tên</label>
-            <input type="text" name="name" class="form-control" value="{{user.name }}" />
+            <input type="text" name="name" class="form-control" value="{{ (user.name) ? user.name : old('name')  }}" />
             {{ elIf('<span class="help-block">$self</span>', getErrorFor('name'), hasErrorFor('name')) }}
           </div>
           <div class="form-group {{ hasErrorFor('phone_number') ? 'has-error' : '' }}">
@@ -17,12 +17,14 @@
             <input type="text" name="phone_number" class="form-control" value="{{ user.phone_number }}" />
             {{ elIf('<span class="help-block">$self</span>', getErrorFor('phone_number'), hasErrorFor('phone_number')) }}
           </div>
-          <div class="form-group">
+          <div class="form-group {{ hasErrorFor('email') ? 'has-error' : '' }}">
             <label>Email</label>
             @if(user.email)
             <input type="text" name="email" class="form-control" value="{{user.email}}"/>
+            {{ elIf('<span class="help-block">$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
             @else
             <input type="text" name="email" class="form-control" />
+            {{ elIf('<span class="help-block">$self</span>', getErrorFor('email'), hasErrorFor('email')) }}
             @endif
 
           </div>

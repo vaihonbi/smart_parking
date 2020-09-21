@@ -33,7 +33,7 @@ class UserController {
       users: users2.toJSON(),
       sapxep,
       sapxeptheo,
-      // keyword,
+      keyword,
       // sapxepID: sapxepID,
       // sapxepTen: sapxepTen,
       // sapxepNgay: sapxepNgay,
@@ -83,11 +83,13 @@ class UserController {
   }
 
   async update({ request, params, response, session }) {
-    const payload = request.only(["name", "phone_number"]);
+    const payload = request.only(["name", "phone_number", "email"]);
     const user = await User.query().update(payload).where("id", params.id);
     // await auth.parking.load("users");
     // const id = session.get("id");
-
+    session.flash({
+      notifica: `Đã sửa thành công!`,
+    });
     return response.route("parking.users.index");
   }
 
