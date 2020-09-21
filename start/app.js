@@ -29,7 +29,9 @@ const providers = [
   "adonis-acl/providers/AclProvider",
   "adonis-smser/providers/SmserProvider",
   "adonis-drive-google/providers/DriveProvider",
+  "@adonisjs/validator/providers/ValidatorProvider",
   path.join(__dirname, "..", "providers", "AppProvider"),
+  path.join(__dirname, "..", "providers", "PhoneNumberProvider"),
 ];
 
 /*

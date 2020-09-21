@@ -63,7 +63,12 @@ Route.group(() => {
   );
   Route.get("/sessions/_lost", "SessionController.lost").as("sessions.lost");
 
-  Route.resource("users", "UserController");
+  Route.resource("users", "UserController").validator(
+    new Map([
+      [["users.store"], ["StoreUser"]],
+      [["users.update"], ["StoreUser"]],
+    ])
+  );
 
   Route.get("/transactions", "TransactionController.index").as("transactions");
   Route.get("/transactions/:id", "TransactionController.show").as(

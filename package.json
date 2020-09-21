@@ -20,11 +20,13 @@
     "@adonisjs/mail": "^3.0.10",
     "@adonisjs/session": "^1.0.27",
     "@adonisjs/shield": "^1.0.8",
+    "@adonisjs/validator": "^5.0.6",
     "@adonisjs/websocket": "^1.0.12",
     "adonis-acl": "^1.1.1",
     "adonis-drive-google": "^0.0.2",
     "adonis-smser": "^0.1.0",
     "knex": "^0.21.2",
+    "libphonenumber-js": "^1.7.58",
     "lodash": "^4.17.19",
     "moment": "^2.27.0",
     "mysql": "^2.18.1"

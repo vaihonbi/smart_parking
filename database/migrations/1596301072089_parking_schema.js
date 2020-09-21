@@ -38,9 +38,26 @@ class ParkingSchema extends Schema {
         .on("parking_types")
         .onDelete("cascade");
     });
+
+    this.create("parking_user", (table) => {
+      table.increments();
+      table
+        .integer("parking_id")
+        .unsigned()
+        .references("id")
+        .on("parkings")
+        .onDelete("cascade");
+      table
+        .integer("user_id")
+        .unsigned()
+        .references("id")
+        .on("users")
+        .onDelete("cascade");
+    });
   }
 
   down() {
+    this.drop("parking_user");
     this.drop("parking_parking_type");
     this.drop("parkings");
   }

@@ -1,0 +1,167 @@
+@layout('parking.layouts.app')
+
+@section('content')
+<div class="content">
+
+
+  <div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Default Modal</h4>
+        </div>
+        <div class="modal-body">
+          <p id="thongtin"></p>
+        </div>
+
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+
+  <div class="box">
+    <form action="{{ route('parking.users.index') }}">
+
+    <div class="input-group input-group" style="margin:20px">
+
+    <input type="text" class="form-control" name="keyword" value="{{ old('keyword') }}"/>
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-info btn-flat">Tìm</button>
+          </span>
+
+
+    </div>
+  </form>
+    <div class="box-body">
+      @if(old('notification'))
+      <div class="alert alert-success">
+        {{ old('notification') }}
+      </div>
+      @endif
+
+      <table class="table">
+        <thead>
+          <tr>
+              <th>
+                <form action="{{ route('parking.users.index') }}">
+                  <label>ID</label>
+                  @if(sapxeptheo=="desc")
+                  <input type="text" name="sapxep" value="id"  hidden>
+                  <input type="text" name="sapxeptheo" value="asc" hidden>
+                 @else
+                  <input type="text" name="sapxep" value="id"  hidden>
+                  <input type="text" name="sapxeptheo" value="desc" hidden>
+                  @endif
+                  <button type="submit" class="btn btn-link pull-right">
+                    <i class="fa fa-fw fa-sort-desc pull-right"></i>
+                  </button>
+                </form>
+              </th>
+
+              <th class="sorting">
+
+                <form action="{{ route('parking.users.index') }}">
+                  <label>Họ tên</label>
+                  @if(sapxeptheo=="desc")
+                  <input type="text" name="sapxep" value="name"  hidden>
+                  <input type="text" name="sapxeptheo" value="asc"  hidden>
+                 @else
+                 <input type="text" name="sapxep" value="name"  hidden>
+                  <input type="text" name="sapxeptheo" value="desc"  hidden>
+                  @endif
+                  <button type="submit" class="btn btn-link pull-right">
+                    <i class="fa fa-fw fa-sort-alpha-desc pull-right"></i>
+                  </button>
+                </form>
+              </th>
+
+              <th class="sorting">
+
+                <form action="{{ route('parking.users.index') }}">
+                  <label>Ngày tạo</label>
+                  @if(sapxeptheo=="desc")
+                  <input type="text" name="sapxep" value="created_at"  hidden>
+                  <input type="text" name="sapxeptheo" value="asc"  hidden>
+                 @else
+                 <input type="text" name="sapxep" value="created_at"  hidden>
+                  <input type="text" name="sapxeptheo" value="desc"  hidden>
+                  @endif
+                  <button type="submit" class="btn btn-link pull-right">
+                    <i class="fa fa-fw fa-sort-desc pull-right"></i>
+                  </button>
+                </form>
+              </th>
+
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @each(user in users.data)
+          <tr>
+            <td>{{ user.id }}</td>
+            <td><a href="{{ route('parking.users.show', { id: user.id }) }}" > {{ user.name }}</a></td>
+            <td>{{ user.created_at }}</td>
+            <td>
+            <a href="{{route('parking.users.edit',{ id: user.id })}}">Sua</a>
+              <form
+                method="POST"
+                action="{{ route('parking.users.destroy', { id: user.id }) }}?_method=DELETE"
+                style="display: inline-block"
+                onsubmit="return confirmDialog();"
+              >
+                {{ csrfField() }}
+                <button type="submit" class="btn btn-link">delete</button>
+              </form>
+
+              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-default" onclick="ChiTiet({{user.id}})">
+                Launch Default Modal
+              </button>
+
+            </td>
+          </tr>
+          @endeach
+        </tbody>
+      </table>
+    </div>
+    <div class="box-footer">
+      <ul class="pagination pagination-sm no-margin pull-right">
+        @if(users.page > 1)
+        <li><a href="{{ route('parking.users.index') }}?page={{ (users.page - 1) }}">«</a></li>
+        @endif
+        @each(item in range(users.lastPage))
+        <li {{ users.page == (item + 1) ? 'class=active' : '' }}>
+          <a href="{{ route('parking.users.index') }}?page={{ (item + 1) }}">
+            {{ (item + 1) }}
+          </a>
+        </li>
+        @endeach
+        @if(users.page < users.lastPage)
+        <li><a href="{{ route('parking.users.index') }}?page={{ (users.page + 1) }}">»</a></li>
+        @endif
+      </ul>
+    </div>
+  </div>
+</div>
+@endsection
+
+@section('scripts')
+<script>
+ async  function  ChiTiet(id){
+    var id=id;
+var data1;
+   await $.getJSON('/parking/users/'+id, function(data){
+       data1=data;
+          })
+
+  }
+
+function confirmDialog() {
+  const result = confirm('Bạn có chắc muốn xóa nhân viên này?');
+
+  return result
+}
+</script>
+@endsection
