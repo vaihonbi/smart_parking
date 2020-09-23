@@ -2,9 +2,26 @@
 
 const _ = use("lodash");
 const User = use("App/Models/User");
+// const DataTables = use("DataTables");
 
 class UserController {
   async index({ request, view, auth }) {
+    // if (request.input("_table")) {
+    //   await auth.parking.load("users");
+
+    //   const { users } = auth.parking.toJSON();
+    //   const userIds = _.map(users, (u) => u.id);
+
+    //   return await DataTables.paginate({
+    //     query() {
+    //       return User.query().whereIn("id", userIds);
+    //     },
+    //   });
+    // }
+
+    // return view.render("parking.pages.user.index");
+
+    // ============
     await auth.parking.load("users");
     const { users } = auth.parking.toJSON();
     const userIds = _.map(users, (u) => u.id);
@@ -27,7 +44,7 @@ class UserController {
       .orderBy(sapxep, sapxeptheo)
       // .orderBy("name", sapxepTen)
       // .orderBy("created_at", sapxepNgay)
-      .paginate(request.input("page"), 3);
+      .fetch();
 
     return view.render("parking.pages.user.index", {
       users: users2.toJSON(),
