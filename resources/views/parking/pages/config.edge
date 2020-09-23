@@ -80,8 +80,11 @@ input:checked + .slider:before {
 
         <td>
           <label class="switch">
-
+            @if(item.is_active ==1)
+            <input type="checkbox" checked>
+            @else
             <input type="checkbox">
+            @endif
             <span class="slider round"></span>
           </label>
         </td>
@@ -100,9 +103,7 @@ input:checked + .slider:before {
   <script>
    function thaydoi(){
       var nut=document.getElementById("nut").value;
-      // alert(nut);
 
-      // if()
     }
   </script>
   @endsection
