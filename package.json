@@ -30,7 +30,8 @@
     "libphonenumber-js": "^1.7.58",
     "lodash": "^4.17.19",
     "moment": "^2.27.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "request-promise": "^4.2.6"
   },
   "devDependencies": {
     "@adonisjs/cli": "^4.0.12"

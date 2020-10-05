@@ -39,6 +39,9 @@ Route.group(() => {
 // Đường dẫn: /api/*
 Route.group(() => {
   Route.post("/login", "LoginController.login");
+  Route.post("/forgot-password", "ForgotPasswordController.forgotPassword");
+  Route.post("/verify-otp", "ForgotPasswordController.verifyOTP");
+  Route.post("/new-password", "ForgotPasswordController.newPassword");
 })
   .prefix("/api")
   .namespace("Api")
@@ -92,6 +95,7 @@ Route.group(() => {
   );
 
   Route.get("/settings", "SettingController.index").as("settings");
+  Route.get("/settings/:id", "SettingController.update").as("settings"); //mới thêm (23-09)
 })
   .prefix("/parking")
   .as("parking")

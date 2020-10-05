@@ -81,9 +81,9 @@ input:checked + .slider:before {
         <td>
           <label class="switch">
             @if(item.is_active ==1)
-            <input type="checkbox" checked>
+            <input type="checkbox" checked onclick="thaydoi({{item.id}})">
             @else
-            <input type="checkbox">
+            <input type="checkbox" onclick="thaydoi({{item.id}})">
             @endif
             <span class="slider round"></span>
           </label>
@@ -101,9 +101,11 @@ input:checked + .slider:before {
 
   @section('scripts')
   <script>
-   function thaydoi(){
-      var nut=document.getElementById("nut").value;
-
+  async function thaydoi(id){
+     var id=id;
+    //  alert(id)
+      // var nut=document.getElementById("nut").value;
+      await $.get('/parking/settings/'+id);
     }
   </script>
   @endsection

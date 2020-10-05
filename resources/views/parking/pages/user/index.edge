@@ -50,6 +50,12 @@
         {{ old('notifica') }}
       </div>
       @endif
+      @if(old('notification_add'))
+      <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close" style="text-decoration:none">&times;</a>
+        {{ old('notification_add') }}
+      </div>
+      @endif
       <table class="table">
         <thead>
           <tr>
@@ -164,7 +170,7 @@
    await $.getJSON('/parking/users/'+id, function(data){
        data1=data;
           })
-          console.log(data1);
+          // console.log(data1);
           document.getElementById("name").innerHTML="<p>Tên: "+data1.name+"</p>";
           if(data1.email != null){
           document.getElementById("thongtin").innerHTML="<p>Email: "+data1.email+"</p><br>"

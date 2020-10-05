@@ -61,13 +61,15 @@ class UserController {
     return view.render("parking.pages.user.create");
   }
 
-  async store({ request, response, auth }) {
+  async store({ request, response, auth, session }) {
     const payload = request.only(["name", "phone_number", "password"]);
     const user = await User.create(payload);
 
     await auth.parking.load("users");
     await auth.parking.users().attach(user.id);
-
+    session.flash({
+      notification: `Đã thêm thành công!`,
+    });
     return response.route("parking.users.index");
   }
 
