@@ -42,6 +42,7 @@ Route.group(() => {
   Route.post("/forgot-password", "ForgotPasswordController.forgotPassword");
   Route.post("/verify-otp", "ForgotPasswordController.verifyOTP");
   Route.post("/new-password", "ForgotPasswordController.newPassword");
+  Route.resource("/sessions", "SessionController").except(["destroy"]);
 })
   .prefix("/api")
   .namespace("Api")
@@ -74,6 +75,7 @@ Route.group(() => {
 
   Route.get("/cameras", "CameraController.index").as("cameras");
   Route.get("/cards", "CardController.index").as("cards");
+  Route.get("/cards/:id", "CardController.locked").as("cards.locked");
   Route.get("/cards/_lost", "CardController.lost").as("cards.lost");
 
   Route.get("/sessions", "SessionController.index").as("sessions");

@@ -19,6 +19,18 @@ class Parking extends Model {
   users() {
     return this.belongsToMany("App/Models/User");
   }
+
+  cards() {
+    return this.hasMany("App/Models/Card");
+  }
+
+  session() {
+    return this.belongsTo("App/Models/Session");
+  }
+
+  sessions() {
+    return this.belongsToMany("App/Models/Session");
+  }
 }
 
 module.exports = Parking;
