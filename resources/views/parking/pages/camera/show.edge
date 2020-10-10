@@ -1,0 +1,22 @@
+@layout('parking.layouts.app')
+
+@section('content')
+<div class="content-header">
+  <h1>{{ camera.name }}</h1>
+</div>
+
+<div class="content" >
+    <div class="embed-responsive embed-responsive-16by9">
+    <div class="plyr__video-embed" id="player">
+        <iframe 
+    src="{{ camera.stream_url }}"
+          allowfullscreen
+          allowtransparency
+          allow="autoplay"
+        ></iframe>
+      </div>
+    </div>
+</div>
+
+
+@endsection

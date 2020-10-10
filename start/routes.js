@@ -74,6 +74,8 @@ Route.group(() => {
   Route.put("/profile", "ProfileController.update").as("profile.update");
 
   Route.get("/cameras", "CameraController.index").as("cameras");
+  Route.get("/cameras/:id/", "CameraController.show").as("cameras.show");
+
   Route.get("/cards", "CardController.index").as("cards");
   Route.get("/cards/:id", "CardController.locked").as("cards.locked");
   Route.get("/cards/_lost", "CardController.lost").as("cards.lost");

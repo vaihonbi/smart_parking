@@ -117,7 +117,6 @@ input:checked + .slider:before {
 @section('scripts')
 <script>
   async function check(id, locked){  
-    // location.href = '{{ route('parking.cards.locked',{id: 'id',locked: "123"}) }}';
     await $.get('/parking/cards/'+id);
   }
 </script>

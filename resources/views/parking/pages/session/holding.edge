@@ -1,0 +1,112 @@
+@layout('parking.layouts.app')
+
+@section('content')
+<div class="content">
+
+  <div class="box">
+    <form action="{{ route('parking.sessions.holding') }}" method="GET">
+
+    <div class="input-group input-group" style="margin:20px">
+
+    <input type="text" class="form-control" name="keyword" value="{{ keyword }}" placeholder="Tìm theo biển số xe hoặc loại xe"/>
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-info btn-flat">Tìm</button>
+          </span>
+    </div>
+  </form>
+      <table class="table">
+        <thead>
+          <tr>
+              <th>
+                <label>STT</label>
+              </th>
+
+              <th>
+                <label>Hình ảnh</label>
+              </th>
+
+              <th>
+                <label>Biển số xe</label>
+              </th>
+
+            <th>
+                <label>Giá tiền</label>
+            </th>
+            <th class="sorting">
+              <form action="{{ route('parking.sessions.holding') }}">
+                <label>Thời gian vào</label>
+                @if(sapxeptheo === "desc")
+                <input type="text" name="sapxep" value="holded_at"  hidden>
+                <input type="text" name="sapxeptheo" value="asc"  hidden>
+               @else
+               <input type="text" name="sapxep" value="holded_at"  hidden>
+                <input type="text" name="sapxeptheo" value="desc"  hidden>
+                @endif
+                <button type="submit" class="btn btn-link pull-right">
+                  <i class="fa fa-fw fa-sort-desc pull-right"></i>
+                </button>
+              </form>
+            </th>
+            <th class="sorting">
+              <form action="{{ route('parking.sessions.holding') }}">
+                <label>Thời gian ra</label>
+                @if(sapxeptheo === "desc")
+                <input type="text" name="sapxep" value="returned_at"  hidden>
+                <input type="text" name="sapxeptheo" value="asc"  hidden>
+               @else
+               <input type="text" name="sapxep" value="returned_at"  hidden>
+                <input type="text" name="sapxeptheo" value="desc"  hidden>
+                @endif
+                <button type="submit" class="btn btn-link pull-right">
+                  <i class="fa fa-fw fa-sort-desc pull-right"></i>
+                </button>
+              </form>
+            </th>
+            <th>
+                <label>Trạng thái</label>
+            </th>
+            <th>
+                <label>Loại xe</label>
+            </th>
+            <th>
+                <label>Mã thẻ</label>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @each(session in sessions.data)
+          <tr>
+            <td>{{ ($loop.index + 1) }}</td>
+            <td><img src="{{ session.image_url }}" alt="{{ session.number_plate }}" width="80" height="80"></td>           
+            <td>{{ session.number_plate }}</td>
+            <td>{{ session.cost }}</td>
+            <td class="longDateFormat">{{ session.holded_at }}</td>
+            <td>{{ session.returned_at }}</td>
+            <td>{{ session.status }}</td>
+            <td>{{ session.name }}</td>
+            <td>{{ session.serial_number }}</td>
+          </tr>
+          @endeach
+        </tbody>
+      </table>
+    </div>
+    <div class="box-footer">
+      <ul class="pagination pagination-sm no-margin pull-right">
+        @if(sessions.page > 1)
+        <li><a href="{{ route('parking.sessions.holding') }}?page={{ (sessions.page - 1) }}&keyword={{ keyword }}&sapxep={{ sapxep }}&sapxeptheo={{ sapxeptheo }}">«</a></li>
+        @endif
+        @each(item in range(sessions.lastPage))
+        <li {{ sessions.page == (item + 1) ? 'class=active' : '' }}>
+          <a href="{{ route('parking.sessions.holding') }}?page={{ (item + 1) }}&keyword={{ keyword }}&sapxep={{ sapxep }}&sapxeptheo={{ sapxeptheo }}">
+            {{ (item + 1) }}
+          </a>
+        </li>
+        @endeach
+        @if(sessions.page < sessions.lastPage)
+      <li><a href="{{ route('parking.sessions.holding') }}?page={{ (sessions.page + 1) }}&keyword={{ keyword }}&sapxep={{ sapxep }}&sapxeptheo={{ sapxeptheo }}">»</a></li>
+        @endif
+      </ul>
+    </div>
+  </div>
+</div>
+@endsection

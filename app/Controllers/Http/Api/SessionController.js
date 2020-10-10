@@ -13,12 +13,15 @@ class SessionController {
 
     const page = request.input("page", 1);
     const keyword = request.input("keyword");
-    // lấy id của tài khoản bên app đăng nhập
-    const user_id = request.input("user_id");
+    const phone_number = request.input("phone_number");
+
+    const user = await Database.select("id")
+      .from("users")
+      .where("phone_number", phone_number);
 
     const parking = await Database.select("parking_id")
       .from("parking_user")
-      .where("user_id", user_id);
+      .where("user_id", user[0].id);
 
     const card = await Database.from("cards")
       .select("cards.id")

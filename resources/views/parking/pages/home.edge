@@ -38,7 +38,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <div class="box box-info">
         <div class="box-header with-border">
           <div class="box-title">
@@ -47,10 +47,11 @@
         </div>
         <div class="box-body">
           <div id="sessionChart"></div>
+          
         </div>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12">
       <div class="box box-info">
         <div class="box-header with-border">
           <div class="box-title">
@@ -70,17 +71,19 @@
 {{ script('vendor/apexcharts/dist/apexcharts.min.js') }}
 
 <script>
+ 
 new ApexCharts(document.querySelector("#sessionChart"), {
   series: [
     {
       name: "Gửi xe",
       type: "column",
-      data: [],
+      data: [{{ soluong[0] }}, {{ soluong[1] }}, {{ soluong[2] }}, {{ soluong[3] }}, {{ soluong[4] }}, {{ soluong[5] }}, {{ soluong[6] }}],
+      //data: [{{ soluong[0] }}],
     },
     {
       name: "Trả xe",
       type: "line",
-      data: [],
+      data: [{{ soluong[0] }}, {{ soluong[1] }}, {{ soluong[2] }}, {{ soluong[3] }}, {{ soluong[4] }}, {{ soluong[5] }}, {{ soluong[6] }}],
     },
   ],
   chart: {
@@ -95,7 +98,8 @@ new ApexCharts(document.querySelector("#sessionChart"), {
     enabled: true,
     enabledOnSeries: [1],
   },
-  labels: [],
+  labels: ["{{ ngay[0] }}", "{{ ngay[1] }}", "{{ ngay[2] }}", "{{ ngay[3] }}", "{{ ngay[4] }}", "{{ ngay[5] }}", "{{ ngay[6] }}"],
+  
 }).render();
 
 new ApexCharts(document.querySelector("#priceChart"), {
