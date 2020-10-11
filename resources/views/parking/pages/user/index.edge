@@ -1,0 +1,190 @@
+@layout('parking.layouts.app')
+
+@section('content')
+<div class="content">
+  <div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+          <h4 class="modal-title" id="name" style="text-align:center;">Default Modal</h4>
+        </div>
+        <div class="modal-body">
+          <p id="thongtin">
+
+          </p>
+        </div>
+
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+
+  <div class="box">
+    <form action="{{ route('parking.users.index') }}" method="GET">
+
+    <div class="input-group input-group" style="margin:20px">
+
+    <input type="text" class="form-control" name="keyword" value="{{ keyword }}" placeholder="Tìm theo tên hoặc số điện thoại"/>
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-info btn-flat">Tìm</button>
+          </span>
+
+
+    </div>
+  </form>
+    <div class="box-body">
+      @if(old('notification'))
+      <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close" style="text-decoration:none">&times;</a>
+        {{ old('notification') }}
+      </div>
+      @endif
+      @if(old('notifica'))
+      <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close" style="text-decoration:none">&times;</a>
+        {{ old('notifica') }}
+      </div>
+      @endif
+      @if(old('notification_add'))
+      <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close" style="text-decoration:none">&times;</a>
+        {{ old('notification_add') }}
+      </div>
+      @endif
+      <table class="table">
+        <thead>
+          <tr>
+              <th>
+                <form action="{{ route('parking.users.index') }}">
+                  <label>ID</label>
+                  @if(sapxeptheo=="desc")
+                  <input type="text" name="sapxep" value="id"  hidden>
+                  <input type="text" name="sapxeptheo" value="asc" hidden>
+                 @else
+                  <input type="text" name="sapxep" value="id"  hidden>
+                  <input type="text" name="sapxeptheo" value="desc" hidden>
+                  @endif
+                  <button type="submit" class="btn btn-link pull-right">
+                    <i class="fa fa-fw fa-sort-desc pull-right"></i>
+                  </button>
+                </form>
+              </th>
+
+              <th class="sorting">
+
+                <form action="{{ route('parking.users.index') }}">
+                  <label>Họ tên</label>
+                  @if(sapxeptheo=="desc")
+                  <input type="text" name="sapxep" value="name"  hidden>
+                  <input type="text" name="sapxeptheo" value="asc"  hidden>
+                 @else
+                 <input type="text" name="sapxep" value="name"  hidden>
+                  <input type="text" name="sapxeptheo" value="desc"  hidden>
+                  @endif
+                  <button type="submit" class="btn btn-link pull-right">
+                    <i class="fa fa-fw fa-sort-alpha-desc pull-right"></i>
+                  </button>
+                </form>
+              </th>
+
+              <th class="sorting">
+
+                <form action="{{ route('parking.users.index') }}">
+                  <label>Ngày tạo</label>
+                  @if(sapxeptheo=="desc")
+                  <input type="text" name="sapxep" value="created_at"  hidden>
+                  <input type="text" name="sapxeptheo" value="asc"  hidden>
+                 @else
+                 <input type="text" name="sapxep" value="created_at"  hidden>
+                  <input type="text" name="sapxeptheo" value="desc"  hidden>
+                  @endif
+                  <button type="submit" class="btn btn-link pull-right">
+                    <i class="fa fa-fw fa-sort-desc pull-right"></i>
+                  </button>
+                </form>
+              </th>
+
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @each(user in users)
+          <tr>
+            <td>{{ user.id }}</td>
+            <td>  {{ user.name }}</td>
+            <td>{{ user.created_at }}</td>
+            <td>
+              <a class="" data-toggle="modal" data-target="#modal-default" onclick="ChiTiet({{user.id}})" href="#">
+                Chi tiết
+              </a>
+            <a href="{{route('parking.users.edit',{ id: user.id })}}" style="margin-left:5px">Sửa</a>
+              <form
+                method="POST"
+                action="{{ route('parking.users.destroy', { id: user.id }) }}?_method=DELETE"
+                style="display: inline-block"
+                onsubmit="return confirmDialog();"
+              >
+                {{ csrfField() }}
+                <button type="submit" class="btn btn-link">Xóa</button>
+              </form>
+            </td>
+          </tr>
+          @endeach
+        </tbody>
+      </table>
+    </div>
+    <div class="box-footer">
+      <ul class="pagination pagination-sm no-margin pull-right">
+        @if(users.page > 1)
+        <li><a href="{{ route('parking.users.index') }}?page={{ (users.page - 1) }}">«</a></li>
+        @endif
+        @each(item in range(users.lastPage))
+        <li {{ users.page == (item + 1) ? 'class=active' : '' }}>
+          <a href="{{ route('parking.users.index') }}?page={{ (item + 1) }}">
+            {{ (item + 1) }}
+          </a>
+        </li>
+        @endeach
+        @if(users.page < users.lastPage)
+        <li><a href="{{ route('parking.users.index') }}?page={{ (users.page + 1) }}">»</a></li>
+        @endif
+      </ul>
+    </div>
+  </div>
+</div>
+@endsection
+
+@section('scripts')
+<script>
+ async  function  ChiTiet(id){
+    var id=id;
+    var data1;
+   await $.getJSON('/parking/users/'+id, function(data){
+       data1=data;
+          })
+          // console.log(data1);
+          document.getElementById("name").innerHTML="<p>Tên: "+data1.name+"</p>";
+          if(data1.email != null){
+          document.getElementById("thongtin").innerHTML="<p>Email: "+data1.email+"</p><br>"
+          +"<p>Số điện thoại: "+data1.phone_number+"</p><br>"
+          +"<p>Ngày tạo: "+data1.created_at+"</p><br>";
+          }else{
+            document.getElementById("thongtin").innerHTML="<p>Email: </p><br>"
+          +"<p>Số điện thoại: "+data1.phone_number+"</p><br>"
+          +"<p>Ngày tạo: "+data1.created_at+"</p><br>";
+          }
+
+
+  }
+
+function confirmDialog() {
+  const result = confirm('Bạn có chắc muốn xóa nhân viên này?');
+
+  return result
+}
+</script>
+@endsection
+

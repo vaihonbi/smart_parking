@@ -1,0 +1,27 @@
+@layout('parking.layouts.app')
+
+@section('content')
+ <div class="content">
+   <div class="row">
+<div class="col-sm-4">
+<form action="{{ route('parking.verifyOtp')  }}" method="POST" class="box box-info">
+      {{ csrfField() }}
+      <div class="box-header with-border">
+        <div class="box-title">
+         Nhập mã OTP
+        </div>
+      </div>
+      <div class="box-body">
+        <div class="form-group">
+          <label for="name">Nhập mã</label>
+          <input type="text" class="form-control" name="otp" value="" />
+        </div>
+      </div>
+      <div class="box-footer">
+        <button type="submit" class="btn btn-info">Xác nhận</button>
+      </div>
+     </form>
+    </div>
+   </div>
+ </div>
+@endsection

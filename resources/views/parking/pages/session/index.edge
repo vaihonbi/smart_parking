@@ -1,0 +1,38 @@
+@layout('parking.layouts.app')
+
+@section('content')
+
+<div class="container">
+  <div class="content" style="background-color: white;">
+    <form  method="GET" action="{{route('parking.sessions.index')}}">
+      <div class="input-group input-group" style="margin:20px">
+        <input type="text" class="form-control" name="keyword" value="{{ keyword }}" placeholder="Tìm"/>
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-info btn-flat">Tìm</button>
+            </span>
+      </div>
+    </form>
+    {{--list--}}
+    @each(item in session)
+    <div class="row" style="margin:5px">
+      <div class="col-sm-12" style="max-height:100px;display: flex;justify-content: space-around; align-items: center;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <img src="https://thamtutoantam.vn/sites/default/files/styles/amp_metadata_content_image_min_696px_wide/public/bien-so-xe-cac-tinh.jpg?itok=UTwgy5-X" alt="img" height="100" width="auto" class="img-rounded">
+        <p style="text-transform: uppercase;font-size: 20px">
+          <i class="fa fa-car" aria-hidden="true"></i>
+          47d-1234
+        </p>
+        <p style="font-size: 20px">
+          <i class="fa fa-usd" aria-hidden="true"></i>
+          5k
+        </p>
+        <p style="color: red">Luot</p>
+        <p>10:44</p>
+
+        {{item.id}}
+
+      </div>
+    </div>
+    @endeach
+  </div>
+</div>
+@endsection
